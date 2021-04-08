@@ -1,22 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace TGS.Paging
 {
 	public static class PagingExtensions
 	{
-		public static void SortByPropertyName<T>(this Paging<T> paging, string propertyName, bool isDesc)
-		{
-			if (!string.IsNullOrWhiteSpace(propertyName))
-			{
-				var type = typeof(T);
-
-				paging.OrderBy = type.MakeMemberAccess(propertyName);
-				paging.IsDesc = isDesc;
-			}
-		}
-
 		public static IAsyncEnumerable<T> ApplyOrderBy<T>(this IAsyncEnumerable<T> query, Paging<T> paging)
 		{
 			if (paging.OrderBy != null)
