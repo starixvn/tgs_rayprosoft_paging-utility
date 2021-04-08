@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagingToolkits", "PagingToolkits\PagingToolkits.csproj", "{BE87D7B9-A539-4958-AF5B-3E44A1F4D070}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagingUtility", "PagingUtility\PagingUtility.csproj", "{BE87D7B9-A539-4958-AF5B-3E44A1F4D070}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagingToolkits.AsyncEnumerable", "PagingToolkits.AsyncEnumerable\PagingToolkits.AsyncEnumerable.csproj", "{844EC788-135E-430F-85A6-22466EA6C332}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagingUtility.AsyncEnumerable", "PagingUtility.AsyncEnumerable\PagingUtility.AsyncEnumerable.csproj", "{844EC788-135E-430F-85A6-22466EA6C332}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PagingToolkits\PagingToolkits.csproj" />
+    <ProjectReference Include="..\PagingUtility\PagingUtility.csproj" />
   </ItemGroup>
 
 </Project>
