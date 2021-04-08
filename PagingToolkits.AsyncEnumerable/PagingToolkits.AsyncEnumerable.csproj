@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>TGS.Paging</RootNamespace>
+    <Nullable>enable</Nullable>
+    <Version>0.0.1</Version>
+    <Authors>Raypro</Authors>
+    <Description>AsyncEnumerable help package</Description>
+    <PackageProjectUrl>https://gitlab.com/rayprosoft/paging-toolkits</PackageProjectUrl>
+    <RepositoryUrl>https://gitlab.com/rayprosoft/paging-toolkits.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>tgs paging</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Linq.Async" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PagingToolkits\PagingToolkits.csproj" />
+  </ItemGroup>
+
+</Project>
