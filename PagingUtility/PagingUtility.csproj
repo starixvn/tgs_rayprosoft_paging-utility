@@ -8,8 +8,8 @@
 		<Authors>Raypro</Authors>
 		<Description>Paging help package</Description>
 		<IsPackable>true</IsPackable>
-		<PackageProjectUrl>https://gitlab.com/rayprosoft/paging-toolkits</PackageProjectUrl>
-		<RepositoryUrl>https://gitlab.com/rayprosoft/paging-toolkits.git</RepositoryUrl>
+		<PackageProjectUrl>https://gitlab.com/rayprosoft/paging-utility</PackageProjectUrl>
+		<RepositoryUrl>https://gitlab.com/rayprosoft/paging-utility.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>tgs paging</PackageTags>
 	</PropertyGroup>
