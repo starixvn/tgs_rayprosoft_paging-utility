@@ -32,12 +32,11 @@ pipeline {
 				sh  'dotnet nuget push PagingUtility.AsyncEnumerable/bin/$BuildConfiguration/*.nupkg --source "raypro" --skip-duplicate'
 			}
 		}
+	}
 
-		post {
-			always {
-				step([$class: 'MSTestPublisher', testResultsFile:"**/*.trx", failOnError: false, keepLongStdio: true])
-			}
+	post {
+		always {
+			step([$class: 'MSTestPublisher', testResultsFile:"**/*.trx", failOnError: false, keepLongStdio: true])
 		}
-
 	}
 }
