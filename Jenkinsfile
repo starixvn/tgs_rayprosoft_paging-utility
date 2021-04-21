@@ -8,9 +8,16 @@ pipeline {
 	stages {
 		stage('Build') {
 			steps {
-				sh "dotnet build"
+				sh "dotnet build -c $BuildConfiguration"
 			}
 		}
+
+		stage('Test') {
+			steps {
+				sh 'dotnet test -c $BuildConfiguration --logger trx --no-build'
+			}
+		}
+
 		
 		stage('Pack') {
 			steps {
@@ -24,6 +31,13 @@ pipeline {
 				sh  'dotnet nuget push PagingUtility/bin/$BuildConfiguration/*.nupkg --source "raypro" --skip-duplicate'
 				sh  'dotnet nuget push PagingUtility.AsyncEnumerable/bin/$BuildConfiguration/*.nupkg --source "raypro" --skip-duplicate'
 			}
-		}	
+		}
+
+		post {
+			always {
+				step([$class: 'MSTestPublisher', testResultsFile:"**/*.trx", failOnError: false, keepLongStdio: true])
+			}
+		}
+
 	}
 }
