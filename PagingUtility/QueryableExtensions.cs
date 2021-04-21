@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 namespace System.Linq
 {
@@ -13,10 +12,10 @@ namespace System.Linq
 				_QueryableType
 					.GetGenericMethod(
 						nameof(Queryable.OrderBy),
-						new[] { typeof(IAsyncEnumerable<>), typeof(Func<,>) })
+						new[] { typeof(IQueryable<>), typeof(Expression<>).MakeGenericType(typeof(Func<,>)) })
 					!.MakeGenericMethod(new[] { typeof(T), orderExpression.ReturnType }),
 				Expression.Constant(query),
-				Expression.Constant(orderExpression.Compile()));
+				Expression.Constant(orderExpression));
 
 			return Expression.Lambda<Func<IOrderedQueryable<T>>>(
 				methodCallExp).Compile()();
@@ -24,14 +23,15 @@ namespace System.Linq
 
 		public static IOrderedQueryable<T> OrderByDescending<T>(this IQueryable<T> query, LambdaExpression orderExpression)
 		{
+			var methodInfo = _QueryableType
+				.GetGenericMethod(
+					nameof(Queryable.OrderByDescending),
+					new[] { typeof(IQueryable<>), typeof(Expression<>).MakeGenericType(typeof(Func<,>)) })
+				!.MakeGenericMethod(new[] { typeof(T), orderExpression.ReturnType });
 			var methodCallExp = Expression.Call(
-			   _QueryableType
-				   .GetGenericMethod(
-					   nameof(Queryable.OrderByDescending),
-					   new[] { typeof(IAsyncEnumerable<>), typeof(Func<,>) })
-				   !.MakeGenericMethod(new[] { typeof(T), orderExpression.ReturnType }),
+			   methodInfo,
 			   Expression.Constant(query),
-			   Expression.Constant(orderExpression.Compile()));
+			   Expression.Constant(orderExpression));
 
 			return Expression.Lambda<Func<IOrderedQueryable<T>>>(
 				methodCallExp).Compile()();
