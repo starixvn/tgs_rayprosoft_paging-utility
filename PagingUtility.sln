@@ -7,11 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PagingUtility", "PagingUtil
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PagingUtility.AsyncEnumerable", "PagingUtility.AsyncEnumerable\PagingUtility.AsyncEnumerable.csproj", "{844EC788-135E-430F-85A6-22466EA6C332}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagingUtilityTests", "PagingUtilityTests\PagingUtilityTests.csproj", "{32AA9178-B41B-4DBA-AEDB-AF0DE824FB53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PagingUtilityTests", "PagingUtilityTests\PagingUtilityTests.csproj", "{32AA9178-B41B-4DBA-AEDB-AF0DE824FB53}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A25486EF-00AD-409D-B912-49D904C176B1}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		nuget.config = nuget.config
 	EndProjectSection
 EndProject
 Global

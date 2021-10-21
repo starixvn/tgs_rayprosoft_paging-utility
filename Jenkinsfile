@@ -28,8 +28,8 @@ pipeline {
 		
 		stage('Push Nuget') {   
 			steps {
-				sh  'dotnet nuget push PagingUtility/bin/$BuildConfiguration/*.nupkg --source "raypro" --skip-duplicate'
-				sh  'dotnet nuget push PagingUtility.AsyncEnumerable/bin/$BuildConfiguration/*.nupkg --source "raypro" --skip-duplicate'
+				sh  'dotnet nuget push PagingUtility/bin/$BuildConfiguration/*.nupkg -s "raypro-baget" -k admin --skip-duplicate'
+				sh  'dotnet nuget push PagingUtility.AsyncEnumerable/bin/$BuildConfiguration/*.nupkg -s "raypro-baget" -k admin --skip-duplicate'
 			}
 		}
 	}
