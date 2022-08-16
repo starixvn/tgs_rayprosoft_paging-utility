@@ -1,27 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿namespace Tgs.Paging;
 
-namespace TGS.Paging
+public static class PagingExtensions
 {
-	public static class PagingExtensions
+	public static IAsyncEnumerable<T> ApplyOrderBy<T>(this IAsyncEnumerable<T> query, Paging<T> paging)
+		=> paging.OrderBy != null
+			? paging.IsDesc
+				? query.OrderByDescending(paging.OrderBy)
+				: query.OrderBy(paging.OrderBy)
+			: query;
+
+	public static IAsyncEnumerable<T> ApplyPaging<T>(this IAsyncEnumerable<T> query, Paging<T> paging)
 	{
-		public static IAsyncEnumerable<T> ApplyOrderBy<T>(this IAsyncEnumerable<T> query, Paging<T> paging)
-		{
-			if (paging.OrderBy != null)
-				return paging.IsDesc
-					? query.OrderByDescending(paging.OrderBy)
-					: query.OrderBy(paging.OrderBy);
-			else
-				return query;
-		}
+		var page = paging.Page <= 0 ? 0 : paging.Page - 1;
 
-		public static IAsyncEnumerable<T> ApplyPaging<T>(this IAsyncEnumerable<T> query, Paging<T> paging)
-		{
-			var page = paging.Page <= 0 ? 0 : paging.Page - 1;
+		var pageSize = paging.RowCount <= 0 ? 10 : paging.RowCount;
 
-			var pageSize = paging.RowCount <= 0 ? 10 : paging.RowCount;
-
-			return query.Skip(page * pageSize).Take(pageSize);
-		}
+		return query.Skip(page * pageSize).Take(pageSize);
 	}
+
+	public static Paging<T> CreatePaging<T>(this IAsyncEnumerable<T> _)
+		=> new Paging<T>();
 }
