@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
-		<RootNamespace>TGS.Paging</RootNamespace>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace>Tgs.Paging</RootNamespace>
 		<Nullable>enable</Nullable>
-		<Version>0.0.3</Version>
+		<Version>1.0.0</Version>
 		<Authors>Raypro</Authors>
 		<Description>Paging help package</Description>
 		<IsPackable>true</IsPackable>
@@ -12,6 +12,8 @@
 		<RepositoryUrl>https://gitlab.com/rayprosoft/paging-utility.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>tgs paging</PackageTags>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Title>Tgs.Paging</Title>
 	</PropertyGroup>
 
 </Project>

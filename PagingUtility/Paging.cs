@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 
-namespace TGS.Paging
+namespace Tgs.Paging;
+
+public class Paging<TRow>
 {
-	public class Paging<TRow>
-	{
-		public int Page { get; set; }
+	public int Page { get; set; }
 
-		public int RowCount { get; set; }
+	public int RowCount { get; set; }
 
-		public bool IsDesc { get; set; }
+	public bool IsDesc { get; set; }
 
-		public LambdaExpression? OrderBy { get; set; } = null;
-	}
+	public LambdaExpression? OrderBy { get; set; } = null;
 }

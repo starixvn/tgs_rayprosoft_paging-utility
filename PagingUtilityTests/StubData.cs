@@ -1,7 +1,6 @@
-﻿namespace PagingUtilityTests
+﻿namespace PagingUtilityTests;
+
+internal record StubData
 {
-	internal record StubData
-	{
-		public int Field1 { get; set; }
-	}
+	public int Field1 { get; set; }
 }
