@@ -5,7 +5,7 @@ using Tgs.Paging;
 namespace PagingUtilityTests;
 
 [TestFixture]
-public class QuerableTests
+public class QueryableTests
 {
 	[Test]
 	public void Can_Get_OrderBy_Method()
@@ -126,5 +126,30 @@ public class QuerableTests
 		var actual = collection.ApplyPaging(paging).ToArray();
 
 		Assert.IsTrue(expected.SequenceEqual(actual));
+	}
+
+	[Test]
+	public void Create_Paging_Object_From_Queryable()
+	{
+		var collection = new[]
+		{
+			new StubData
+			{
+				Field1 = 1
+			},
+			new StubData
+			{
+				Field1 = 2
+			},
+			new StubData
+			{
+				Field1 = 3
+			}
+		}.AsQueryable();
+
+		var actual = collection.CreatePaging();
+
+		Assert.IsNotNull(actual);
+		Assert.IsTrue(actual is Paging<StubData>);
 	}
 }
