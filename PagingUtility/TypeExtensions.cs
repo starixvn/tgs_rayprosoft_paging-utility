@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Tgs.Paging;
 
-public static class TypeExtensions
+internal static class TypeExtensions
 {
 	public static LambdaExpression MakeMemberAccess(this Type type, string propertyName)
 	{

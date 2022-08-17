@@ -126,4 +126,29 @@ public class AsyncEnumerableTests
 
 		Assert.IsTrue(expected.SequenceEqual(actual));
 	}
+
+	[Test]
+	public void Create_Paging_Object_From_AsyncEnumerable()
+	{
+		var collection = new[]
+		{
+			new StubData
+			{
+				Field1 = 1
+			},
+			new StubData
+			{
+				Field1 = 2
+			},
+			new StubData
+			{
+				Field1 = 3
+			}
+		}.ToAsyncEnumerable();
+
+		var actual = collection.CreatePaging();
+
+		Assert.IsNotNull(actual);
+		Assert.IsTrue(actual is Paging<StubData>);
+	}
 }

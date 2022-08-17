@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Tgs.Paging</RootNamespace>
     <Nullable>enable</Nullable>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>Raypro</Authors>
     <Description>AsyncEnumerable help package</Description>
     <PackageProjectUrl>https://gitlab.com/rayprosoft/paging-utility</PackageProjectUrl>
