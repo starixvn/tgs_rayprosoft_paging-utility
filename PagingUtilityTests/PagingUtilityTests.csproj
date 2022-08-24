@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="ExpectedObjects" Version="3.5.3" />
+    <PackageReference Include="JunitXml.TestLogger" Version="3.0.114" />
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
