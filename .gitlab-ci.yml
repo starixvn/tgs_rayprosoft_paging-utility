@@ -54,10 +54,12 @@ pack-nuget:
 
 push-nuget:
   stage: publish
+  tags:
+    - linux
   dependencies:
     - pack-nuget
   only:
     - main
   script:
-    - dotnet nuget push PagingUtility\bin\$BuildConfiguration\*.nupkg -s "raypro-baget" -k $BagetApiKey --skip-duplicate
-    - dotnet nuget push PagingUtility.AsyncEnumerable\bin\$BuildConfiguration\*.nupkg -s "raypro-baget" -k $BagetApiKey --skip-duplicate
+    - dotnet nuget push PagingUtility/bin/$BuildConfiguration/*.nupkg -s "raypro-baget" -k $BagetApiKey --skip-duplicate
+    - dotnet nuget push PagingUtility.AsyncEnumerable/bin/$BuildConfiguration/*.nupkg -s "raypro-baget" -k $BagetApiKey --skip-duplicate
