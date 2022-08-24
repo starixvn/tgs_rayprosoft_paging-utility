@@ -1,0 +1,59 @@
+stages:
+  - build
+  - test
+  - pack
+  - publish
+
+build-code:
+  stage: build
+  script:
+    - dotnet build -c $BuildConfiguration
+  only:
+    - merge_requests
+    - main
+  artifacts:
+    untracked: true
+    expire_in: "1 days"
+
+unit-test:
+  stage: test
+  script:
+    - dotnet test -c $BuildConfiguration -l:"junit;LogFilePath=../TestReports/{assembly}-TestReport.xml" --no-build --no-restore
+  dependencies:
+    - build-code
+  only:
+    - merge_requests
+    - main
+  artifacts:
+    when: always
+    paths:
+      - ./TestReports/*-TestReport.xml
+    reports:
+      junit:
+        - ./TestReports/*-TestReport.xml
+
+pack-nuget:
+  stage: pack
+  dependencies:
+    - unit-test
+  only:
+    - main
+  script:
+    - dotnet pack PagingUtility/PagingUtility.csproj -c $BuildConfiguration --no-build --no-restore
+  artifacts:
+    untracked: false
+    expire_in: "30 days"
+    name: NugetPackages
+    paths:
+      - PagingUtility/bin/$BuildConfiguration/*.nupkg
+      - PagingUtility/bin/$BuildConfiguration/*.nupkg
+
+push-nuget:
+  stage: publish
+  dependencies:
+    - pack-nuget
+  only:
+    - main
+  script:
+    - dotnet nuget push PagingUtility/bin/$BuildConfiguration/*.nupkg -s "raypro-baget" -k admin --skip-duplicate
+    - dotnet nuget push PagingUtility.AsyncEnumerable/bin/$BuildConfiguration/*.nupkg -s "raypro-baget" -k admin --skip-duplicate
