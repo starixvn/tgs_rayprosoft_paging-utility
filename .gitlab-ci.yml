@@ -34,8 +34,11 @@ unit-test:
 
 pack-nuget:
   stage: pack
-  dependencies:
-    - unit-test
+  needs:
+    - job: unit-test
+      artifacts: false
+    - job: build-code
+      artifacts: true
   only:
     - main
   script:
