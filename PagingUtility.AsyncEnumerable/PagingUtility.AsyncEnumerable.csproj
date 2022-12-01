@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Tgs.Paging</RootNamespace>
     <Nullable>enable</Nullable>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <Authors>Raypro</Authors>
     <Description>AsyncEnumerable help package</Description>
     <PackageProjectUrl>https://gitlab.com/rayprosoft/paging-utility</PackageProjectUrl>
@@ -13,10 +13,11 @@
     <PackageTags>tgs paging</PackageTags>
     <ImplicitUsings>enable</ImplicitUsings>
     <Title>Tgs.Paging.AsyncEnumerable</Title>
+    <PackageId>Tgs.Paging.AsyncEnumerable</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Linq.Async" Version="5.0.0" />
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
