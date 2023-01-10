@@ -4,8 +4,6 @@ namespace Tgs.Paging;
 
 public class Paging<TRow>
 {
-	private readonly Dictionary<string, string> _propertyNameMap = new(StringComparer.OrdinalIgnoreCase);
-
 	public int Page { get; set; }
 
 	public int RowCount { get; set; }
@@ -14,16 +12,16 @@ public class Paging<TRow>
 
 	internal LambdaExpression? OrderBy { get; set; } = null;
 
-	internal string MapPropertyName(string inputPropertyName)
-	{
-		if (_propertyNameMap.TryGetValue(inputPropertyName, out var mappedName))
-			return mappedName;
-		else
-			return inputPropertyName;
-	}
+	internal Dictionary<string, string> PropertyNameMap { get; } = new(StringComparer.OrdinalIgnoreCase);
 
-	internal void AddPropertyMap(string inputPropertyName, string mappedName)
-	{
-		_propertyNameMap.Add(inputPropertyName, mappedName);
-	}
+	internal static void AddPropertyMap(
+		string inputPropertyName,
+		string mappedName,
+		Dictionary<string, string> m_PropertyNameMap)
+		=> m_PropertyNameMap.Add(inputPropertyName, mappedName);
+
+	internal string MapPropertyName(string inputPropertyName)
+		=> PropertyNameMap.TryGetValue(inputPropertyName, out var mappedName)
+			? mappedName
+			: inputPropertyName;
 }

@@ -19,5 +19,5 @@ public static class PagingExtensions
 	}
 
 	public static Paging<T> CreatePaging<T>(this IAsyncEnumerable<T> _)
-		=> new Paging<T>();
+		=> new();
 }
