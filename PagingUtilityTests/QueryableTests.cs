@@ -129,6 +129,7 @@ public class QueryableTests
 	}
 
 	[Test]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0150:建議使用 'null' 檢查而非鍵入檢查", Justification = "<暫止>")]
 	public void Create_Paging_Object_From_Queryable()
 	{
 		var collection = new[]

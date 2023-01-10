@@ -10,7 +10,7 @@ public class PropertyMapTests
 	{
 		var sut = new Paging<StubData>();
 
-		sut.MapProperty("Test", s => s.Field1);
+		_ = sut.MapProperty("Test", s => s.Field1);
 
 		var actual = sut.MapPropertyName("Test");
 
@@ -38,7 +38,7 @@ public class PropertyMapTests
 
 		var paging = new Paging<StubData>();
 
-		paging.MapProperty("Test", p => p.Field1);
+		_ = paging.MapProperty("Test", p => p.Field1);
 
 		paging.SortByPropertyName("Test", false);
 

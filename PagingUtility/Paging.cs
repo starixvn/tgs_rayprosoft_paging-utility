@@ -4,26 +4,44 @@ namespace Tgs.Paging;
 
 public class Paging<TRow>
 {
-	private readonly Dictionary<string, string> _propertyNameMap = new(StringComparer.OrdinalIgnoreCase);
-
 	public int Page { get; set; }
 
 	public int RowCount { get; set; }
 
 	public bool IsDesc { get; set; }
 
+	internal string? PropertyName { private get; set; }
+
 	internal LambdaExpression? OrderBy { get; set; } = null;
 
-	internal string MapPropertyName(string inputPropertyName)
+	internal Dictionary<string, string> PropertyNameMap { get; } = new(StringComparer.OrdinalIgnoreCase);
+
+	public Paging<TConvertRow> ConvertTo<TConvertRow>(Action<Paging<TConvertRow>> mapping)
 	{
-		if (_propertyNameMap.TryGetValue(inputPropertyName, out var mappedName))
-			return mappedName;
-		else
-			return inputPropertyName;
+		if (string.IsNullOrEmpty(PropertyName))
+			throw new SortByNotYetSpecifiedException("This paging not assign sort property.");
+
+		var newPaging = new Paging<TConvertRow>()
+		{
+			Page = Page,
+			RowCount = RowCount
+		};
+
+		mapping(newPaging);
+
+		newPaging.SortByPropertyName(PropertyName, IsDesc);
+
+		return newPaging;
 	}
 
-	internal void AddPropertyMap(string inputPropertyName, string mappedName)
-	{
-		_propertyNameMap.Add(inputPropertyName, mappedName);
-	}
+	internal static void AddPropertyMap(
+			string inputPropertyName,
+		string mappedName,
+		Dictionary<string, string> m_PropertyNameMap)
+		=> m_PropertyNameMap.Add(inputPropertyName, mappedName);
+
+	internal string MapPropertyName(string inputPropertyName)
+		=> PropertyNameMap.TryGetValue(inputPropertyName, out var mappedName)
+			? mappedName
+			: inputPropertyName;
 }

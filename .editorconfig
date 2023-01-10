@@ -104,6 +104,7 @@ csharp_style_conditional_delegate_call = true
 # 修飾元喜好設定
 csharp_prefer_static_local_function = true
 csharp_preferred_modifier_order = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async
+csharp_style_prefer_readonly_struct = true
 
 # 程式碼區塊喜好設定
 csharp_prefer_braces = when_multiline
@@ -257,6 +258,3 @@ dotnet_naming_style.begins_with_m_and_underscore.required_prefix = m_
 dotnet_naming_style.begins_with_m_and_underscore.required_suffix = 
 dotnet_naming_style.begins_with_m_and_underscore.word_separator = 
 dotnet_naming_style.begins_with_m_and_underscore.capitalization = pascal_case
-
-# IDE0090: 使用 'new(...)'
-dotnet_diagnostic.IDE0090.severity = silent

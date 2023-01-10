@@ -11,14 +11,15 @@ public static class PagingExtensions
 		{
 			var type = typeof(T);
 
-			paging.OrderBy = type.MakeMemberAccess(paging.MapPropertyName(propertyName));
+			paging.OrderBy = type.MakeMemberAccess(paging.MapPropertyName(propertyName), out var memberPropertyName);
+			paging.PropertyName = memberPropertyName;
 			paging.IsDesc = isDesc;
 		}
 	}
 
 	public static Paging<T> MapProperty<T>(this Paging<T> paging, string inputPropertyName, [NotNull] Expression<Func<T, object>> propertySelector)
 	{
-		paging.AddPropertyMap(inputPropertyName, GetMemberName(propertySelector.Body));
+		Paging<T>.AddPropertyMap(inputPropertyName, GetMemberName(propertySelector.Body), paging.PropertyNameMap);
 
 		return paging;
 	}
@@ -40,39 +41,19 @@ public static class PagingExtensions
 	}
 
 	public static Paging<T> CreatePaging<T>(this IQueryable<T> _)
-		=> new Paging<T>();
+		=> new();
 
 	private static string GetMemberName(Expression expression)
-	{
-		if (expression is MemberExpression)
-		{
-			// Reference type property or field
-			var memberExpression = (MemberExpression)expression;
-			return memberExpression.Member.Name;
-		}
-		if (expression is MethodCallExpression)
-		{
-			// Reference type method
-			var methodCallExpression = (MethodCallExpression)expression;
-			return methodCallExpression.Method.Name;
-		}
-		if (expression is UnaryExpression)
-		{
-			// Property, field of method returning value type
-			var unaryExpression = (UnaryExpression)expression;
-			return GetMemberName(unaryExpression);
-		}
-
-		throw new ArgumentException("Can not read property name.");
-	}
+		=> expression is MemberExpression memberExpression
+			? memberExpression.Member.Name
+			: expression is MethodCallExpression methodCallExpression
+				? methodCallExpression.Method.Name
+				: expression is UnaryExpression unaryExpression
+					? GetMemberName(unaryExpression)
+					: throw new ArgumentException("Can not read property name.");
 
 	private static string GetMemberName(UnaryExpression unaryExpression)
-	{
-		if (unaryExpression.Operand is MethodCallExpression)
-		{
-			var methodExpression = (MethodCallExpression)unaryExpression.Operand;
-			return methodExpression.Method.Name;
-		}
-		return ((MemberExpression)unaryExpression.Operand).Member.Name;
-	}
+		=> unaryExpression.Operand is MethodCallExpression methodExpression
+			? methodExpression.Method.Name
+			: ((MemberExpression)unaryExpression.Operand).Member.Name;
 }
