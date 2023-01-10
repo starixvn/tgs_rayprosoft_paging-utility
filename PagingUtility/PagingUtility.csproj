@@ -4,7 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<RootNamespace>Tgs.Paging</RootNamespace>
 		<Nullable>enable</Nullable>
-		<Version>1.2.0</Version>
+		<Version>1.2.1</Version>
 		<Authors>Raypro</Authors>
 		<Description>Paging help package</Description>
 		<IsPackable>true</IsPackable>
@@ -15,6 +15,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Title>Tgs.Paging</Title>
 		<PackageId>Tgs.Paging</PackageId>
+		<SqlQueryToolsConnectionString />
 	</PropertyGroup>
 
 </Project>

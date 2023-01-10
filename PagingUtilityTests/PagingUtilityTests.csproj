@@ -8,6 +8,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
 
     <Nullable>enable</Nullable>
+
+    <SqlQueryToolsConnectionString />
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +23,10 @@
   <ItemGroup>
     <ProjectReference Include="..\PagingUtility.AsyncEnumerable\PagingUtility.AsyncEnumerable.csproj" />
     <ProjectReference Include="..\PagingUtility\PagingUtility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="NUnit.Framework" />
   </ItemGroup>
 
 </Project>

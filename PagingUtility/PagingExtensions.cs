@@ -11,7 +11,8 @@ public static class PagingExtensions
 		{
 			var type = typeof(T);
 
-			paging.OrderBy = type.MakeMemberAccess(paging.MapPropertyName(propertyName));
+			paging.OrderBy = type.MakeMemberAccess(paging.MapPropertyName(propertyName), out var memberPropertyName);
+			paging.PropertyName = memberPropertyName;
 			paging.IsDesc = isDesc;
 		}
 	}
@@ -46,10 +47,10 @@ public static class PagingExtensions
 		=> expression is MemberExpression memberExpression
 			? memberExpression.Member.Name
 			: expression is MethodCallExpression methodCallExpression
-			? methodCallExpression.Method.Name
-			: expression is UnaryExpression unaryExpression
-			? GetMemberName(unaryExpression)
-			: throw new ArgumentException("Can not read property name.");
+				? methodCallExpression.Method.Name
+				: expression is UnaryExpression unaryExpression
+					? GetMemberName(unaryExpression)
+					: throw new ArgumentException("Can not read property name.");
 
 	private static string GetMemberName(UnaryExpression unaryExpression)
 		=> unaryExpression.Operand is MethodCallExpression methodExpression
